@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Berk Sezer</title>
+  <meta name="description" content="Berk Sezer: 3 papers (IEEE FG, NeurIPS workshop, ICRA), Cambridge research internship, robotics, vision and deep learning, METU CS 3.89/4.00. Applying to PhD programs, Fall 2027.">
+  <meta property="og:title" content="Berk Sezer">
+  <meta property="og:description" content="3 papers · Cambridge research internship · METU CS 3.89/4.00 · Applying to PhD programs, Fall 2027">
+  <meta property="og:image" content="assets/banner.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=17">
+  <script>
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
+</head>
+<body>
+<main class="page">
+
+  <header class="hero">
+    <div class="hero-photo">
+      <img src="assets/banner.jpg?v=2" alt="Berk Sezer at IEEE FG 2026, Kyoto">
+    </div>
+    <div class="hero-row">
+      <div class="id">
+        <h1>Berk Sezer</h1>
+        <p class="status">Applying to PhD programs · <span class="nowrap">Fall 2027</span></p>
+      </div>
+      <div class="contact">
+        <span class="mail">
+          <span class="label">Email</span>
+          <a class="email" href="mailto:berk.sezer@metu.edu.tr">berk.sezer@metu.edu.tr</a>
+        </span>
+        <a class="cv" href="Berk_Sezer_CV.pdf" target="_blank" rel="noopener">Full CV ↗</a>
+        <button id="theme" aria-label="Toggle light/dark theme" title="Toggle theme"></button>
+      </div>
+    </div>
+  </header>
+
+  <section class="grid">
+
+    <article class="cell">
+      <h2>3 Completed Papers</h2>
+      <p class="sub">2 sole first-author · 1 co-first-author</p>
+      <ul class="venues">
+        <li><a href="https://gazeforhri.github.io/"><b>IEEE FG 2026</b></a><span class="kind">Main conference</span><span class="st ok">Accepted</span></li>
+        <li><b>NeurIPS 2026</b><span class="kind">NeurReps workshop</span><span class="st ok">Accepted</span></li>
+        <li><b>ICRA 2027</b><span class="kind">Main conference</span><span class="st wip">Under review</span></li>
+      </ul>
+    </article>
+
+    <article class="cell">
+      <h2>Robotics, Vision &amp; Deep Learning</h2>
+      <p class="sub">Hands-on experience</p>
+      <div class="tags">
+        <div><span>Vision-Language-Action (VLAs)</span></div>
+        <div><span>Real World &amp; Simulation</span><span>Pre-training</span></div>
+        <div><span>Real-time Perception</span><span>HRI</span></div>
+      </div>
+    </article>
+
+    <article class="cell">
+      <h2>University of Cambridge</h2>
+      <p class="sub">Full-time research internship · Summer 2026</p>
+      <p>Resulted in an ICRA co-first-author submission.</p>
+    </article>
+
+    <article class="cell">
+      <h2>Academics</h2>
+      <p class="sub">B.Sc. Computer Science · METU</p>
+      <p>3.89/4.00 CGPA. Top-ranked CS department in Turkey.</p>
+    </article>
+
+  </section>
+
+</main>
+
+<script>
+  document.getElementById('theme').addEventListener('click', function () {
+    var root = document.documentElement;
+    var dark = root.dataset.theme ? root.dataset.theme === 'dark'
+                                  : matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = dark ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });</script>
+</body>
+</html>

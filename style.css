@@ -1,0 +1,115 @@
+:root {
+  --bg: #ffffff;
+  --ink: #0b1220;
+  --body: #1e293b;
+  --muted: #475569;
+  --line: #e2e8f0;
+  --chip: #f1f5f9;
+  --ok: #15803d;
+  --wip: #b45309;
+  --navy: #0d1b2a;            /* banner fade target; matches the photo's poster navy */
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1b2a; --ink: #ffffff; --body: #e3eaf2; --muted: #9fb3c8; --line: #1f3347; --chip: #132739;
+    --ok: #4ade80; --wip: #fbbf24;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1b2a; --ink: #ffffff; --body: #e3eaf2; --muted: #9fb3c8; --line: #1f3347; --chip: #132739;
+  --ok: #4ade80; --wip: #fbbf24;
+}
+
+/* Everything is sized in rem, so the whole page scales up on wide screens. */
+html { font-size: clamp(16px, 0.55vw + 10px, 21px); }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--body);
+  font: 1rem/1.6 var(--sans); -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+
+.page { max-width: 64rem; margin: 0 auto; padding: 2rem 1.5rem 3.5rem; }
+
+/* hero: photo banner with name (left) and email (right) along the bottom */
+.hero { position: relative; background: var(--navy); border: 1px solid var(--line); border-radius: 1.25rem; overflow: hidden; color: #fff; }
+/* Full-bleed: the banner matches the photo's 2.5:1 crop, so nothing is cut or faded. */
+.hero-photo { position: relative; aspect-ratio: 2.5 / 1; }
+.hero-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 82%, var(--navy) 100%);
+}
+.hero-row {
+  position: relative; display: flex; align-items: last baseline; justify-content: space-between; gap: 1.5rem;
+  padding: 1.1rem 2rem 1.75rem;
+}
+h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.035em; line-height: 1.1; color: #fff; margin: 0 0 .2rem; }
+.status { margin: 0; color: #7cc4ff; font-weight: 600; font-size: 1.05rem; }
+.nowrap { white-space: nowrap; }
+
+/* Email, CV button and toggle share one centre line; .hero-row aligns that line's
+   text baseline with the "Applying to PhD programs" baseline. */
+.contact { display: flex; align-items: center; font-size: 1.05rem; }
+.mail { display: flex; align-items: baseline; gap: .6rem; }
+.contact .label { color: #9fb3c8; font-weight: 500; font-size: .95rem; }
+.email { color: #fff; font-weight: 600; border-bottom: 1px solid rgba(255, 255, 255, .3); transition: border-color .15s; }
+.email:hover { border-color: #fff; }
+.cv {
+  margin-left: .9rem; padding: .35rem .95rem; border-radius: 999px;
+  background: #fff; color: var(--navy); font-weight: 600; font-size: .95rem; white-space: nowrap; transition: opacity .15s;
+}
+.cv:hover { opacity: .85; }
+#theme {
+  margin-left: 1rem;
+  width: 1rem; height: 1rem; border-radius: 50%; border: 1.5px solid #9fb3c8; padding: 0; cursor: pointer;
+  background: linear-gradient(90deg, #9fb3c8 50%, transparent 50%);
+}
+
+/* highlights: 2x2 grid split by hairlines */
+.grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: .75rem; }
+.cell { padding: 2.1rem 2.75rem 2.1rem 0; border-bottom: 1px solid var(--line); }
+.cell:nth-child(2n) { padding: 2.1rem 0 2.1rem 2.75rem; border-left: 1px solid var(--line); }
+.cell:nth-last-child(-n+2) { border-bottom: 0; }
+
+.cell h2 { font-size: 1.65rem; font-weight: 700; letter-spacing: -.025em; line-height: 1.2; color: var(--ink); margin: 0 0 .3rem; }
+.cell .sub { margin: 0 0 1.1rem; color: var(--muted); font-size: .95rem; font-weight: 500; }
+.cell p { margin: 0; font-size: 1.05rem; color: var(--body); font-weight: 500; }
+
+.venues { list-style: none; margin: 0; padding: 0; }
+.venues li {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .7rem;
+  min-height: 3rem; padding: .25rem 0; border-top: 1px solid var(--line);
+}
+.venues li:last-child { border-bottom: 1px solid var(--line); }
+.venues b { font-weight: 650; color: var(--ink); font-size: 1.05rem; }
+.venues a b { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+.venues a:hover b { text-decoration-color: var(--ink); }
+.kind { color: var(--muted); font-size: .95rem; }
+.st { font-size: .9rem; font-weight: 600; white-space: nowrap; }
+.st::before { content: ""; display: inline-block; width: .45rem; height: .45rem; border-radius: 50%; background: currentColor; margin-right: .45rem; vertical-align: .1rem; }
+.st.ok { color: var(--ok); }
+.st.wip { color: var(--wip); }
+
+/* Three chip rows, each the same height as a paper row, so the two top cells line up. */
+.tags > div { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem; min-height: 3rem; padding: .25rem 0; }
+.tags span {
+  padding: .4rem .85rem; border-radius: 999px; background: var(--chip); border: 1px solid var(--line);
+  color: var(--ink); font-size: .95rem; font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .page { padding: 1rem 1rem 2.5rem; }
+  .hero-photo { aspect-ratio: 4 / 3; }
+  .hero-photo img { width: 100%; object-fit: cover; object-position: 61% center; }
+  .hero-row { flex-direction: column; align-items: flex-start; gap: .9rem; padding: 0 1.25rem 1.25rem; }
+  h1 { font-size: 2rem; }
+  #theme { display: none; }
+  .contact { flex-wrap: wrap; gap: .9rem; }
+  .cv { margin-left: 0; }
+  .grid { grid-template-columns: 1fr; }
+  .cell, .cell:nth-child(2n), .cell:nth-last-child(-n+2) { padding: 1.75rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .cell:last-child { border-bottom: 0; }
+}
+
