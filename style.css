@@ -68,8 +68,11 @@ h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.035em; line-height: 
 }
 
 /* highlights: 2x2 grid split by hairlines */
-.grid { display: grid; grid-template-columns: 1fr 1fr; margin-top: .75rem; }
-.cell { padding: 2.1rem 2.75rem 2.1rem 0; border-bottom: 1px solid var(--line); }
+.grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6, auto); margin-top: .75rem; }
+/* Each cell spans three shared rows (title, sub, content), so a wrapped title in one cell
+   moves the other cell's rows down with it and the paper and chip rows stay level. */
+.cell { display: grid; grid-template-rows: subgrid; grid-row: span 3; padding: 2.1rem 2.75rem 2.1rem 0; border-bottom: 1px solid var(--line); }
+.cell h2 { align-self: end; }
 .cell:nth-child(2n) { padding: 2.1rem 0 2.1rem 2.75rem; border-left: 1px solid var(--line); }
 .cell:nth-last-child(-n+2) { border-bottom: 0; }
 
@@ -84,8 +87,10 @@ h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.035em; line-height: 
 }
 .venues li:last-child { border-bottom: 1px solid var(--line); }
 .venues b { font-weight: 650; color: var(--ink); font-size: 1.05rem; }
-.venues a b { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
-.venues a:hover b { text-decoration-color: var(--ink); }
+/* Names with a project page are links: underline and an arrow. */
+.venues a b { text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+.venues a::after { content: " ↗"; font-weight: 600; font-size: .9em; }
+.venues a:hover { opacity: .8; }
 .kind { color: var(--muted); font-size: .95rem; }
 .st { font-size: .9rem; font-weight: 600; white-space: nowrap; }
 .st::before { content: ""; display: inline-block; width: .45rem; height: .45rem; border-radius: 50%; background: currentColor; margin-right: .45rem; vertical-align: .1rem; }
@@ -121,7 +126,8 @@ h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: -.035em; line-height: 
   #theme { display: none; }
   .contact { flex-wrap: wrap; gap: .9rem; }
   .cv { margin-left: 0; }
-  .grid { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr; grid-template-rows: none; }
+  .cell { display: block; grid-row: auto; }
   .cell, .cell:nth-child(2n), .cell:nth-last-child(-n+2) { padding: 1.75rem 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .cell:last-child { border-bottom: 0; }
   .project { grid-template-columns: 5.5rem 1fr; grid-template-areas: "img head" "desc desc" "go go"; column-gap: 1rem; row-gap: .9rem; padding-top: 1.75rem; }
